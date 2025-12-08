@@ -1,0 +1,217 @@
+.channel-card {
+  position: relative;
+  cursor: pointer;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.channel-card:nth-child(1) { animation-delay: 0.1s; }
+.channel-card:nth-child(2) { animation-delay: 0.2s; }
+.channel-card:nth-child(3) { animation-delay: 0.3s; }
+.channel-card:nth-child(4) { animation-delay: 0.4s; }
+.channel-card:nth-child(5) { animation-delay: 0.5s; }
+.channel-card:nth-child(6) { animation-delay: 0.6s; }
+
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--card-gradient);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.channel-card:hover .card-glow {
+  opacity: 0.2;
+}
+
+.channel-card-inner {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  gap: 1.5rem;
+}
+
+.channel-card-image-container {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s ease;
+}
+
+.channel-card:hover .image-wrapper::before {
+  left: 100%;
+}
+
+.channel-card:hover .image-wrapper {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.channel-card-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.channel-card:hover .channel-card-logo {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  transform: scale(1.05);
+}
+
+.channel-card-content {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.channel-card-name {
+  margin: 0;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  flex: 1;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.channel-card:hover .channel-card-name {
+  transform: translateX(5px);
+  color: #fff;
+}
+
+.card-arrow {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: white;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.channel-card:hover .card-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.card-arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.channel-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .channel-card-inner {
+    min-height: 240px;
+    padding: 1.5rem;
+  }
+
+  .channel-card-image-container {
+    height: 150px;
+  }
+
+  .image-wrapper {
+    padding: 1.5rem;
+  }
+
+  .channel-card-name {
+    font-size: 1.2rem;
+  }
+
+  .card-arrow {
+    width: 35px;
+    height: 35px;
+  }
+
+  .card-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .channel-card-inner {
+    min-height: 220px;
+    padding: 1.25rem;
+  }
+
+  .channel-card-image-container {
+    height: 130px;
+  }
+
+  .channel-card-name {
+    font-size: 1.1rem;
+  }
+}
