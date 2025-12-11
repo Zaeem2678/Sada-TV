@@ -74,7 +74,8 @@ function Header() {
       )}
       <div className="header-container">
         <div className="header-logo">
-          <img src="/sada-logo.jpeg" alt="Sada TV Logo" className="logo-img" />
+          <img src="/sada-logo.png" alt="Sada TV Logo" className="logo-img" />
+          <span className="logo-text">SADA TV</span>
         </div>
         <button
           className="hamburger-button"
@@ -82,15 +83,34 @@ function Header() {
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
         >
-          <span
-            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
-          ></span>
-          <span
-            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
-          ></span>
-          <span
-            className={`hamburger-line ${isMobileMenuOpen ? "open" : ""}`}
-          ></span>
+          {!isMobileMenuOpen ? (
+            <svg
+              className="menu-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          ) : (
+            <svg
+              className="close-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          )}
         </button>
         <nav
           className={`header-nav ${isMobileMenuOpen ? "mobile-open" : ""}`}

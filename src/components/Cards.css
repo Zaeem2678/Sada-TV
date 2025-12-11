@@ -2,6 +2,8 @@
   padding: 5rem 0 2rem;
   background: #f5f5f5;
   position: relative;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .cards-container {
@@ -10,6 +12,8 @@
   padding: 0 2rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .cards-grid {
@@ -17,23 +21,46 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 3rem;
   width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure proper grid on all screen sizes */
+@media (max-width: 1400px) {
+  .cards-grid {
+    gap: 2.5rem;
+  }
 }
 
 .card {
-  background: #ffffff;
+  background: #000000;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
   cursor: pointer;
   max-width: 100%;
+  width: 100%;
 }
 
 .card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Better touch targets on mobile */
+@media (max-width: 768px) {
+  .card {
+    border-radius: 6px;
+    /* Ensure touch-friendly sizing */
+    min-height: 280px;
+  }
+
+  .card:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .card-image-wrapper {
@@ -64,12 +91,21 @@
   direction: rtl;
   text-align: right;
   min-height: 60px;
+  justify-content: center;
+}
+
+/* Responsive text alignment */
+@media (max-width: 768px) {
+  .card-content {
+    padding: 1rem;
+    min-height: 70px;
+  }
 }
 
 .card-text {
   font-size: 0.9rem;
   font-weight: 500;
-  color: #2c3e50;
+  color: #ffffff;
   margin: 0;
   line-height: 1.5;
   display: -webkit-box;
@@ -122,17 +158,17 @@
 
 @media (max-width: 768px) {
   .cards-section {
-    padding: 4rem 0 1.5rem;
+    padding: 3.5rem 0 1.5rem;
   }
 
   .cards-container {
-    padding: 0 1.5rem;
-    max-width: 500px;
+    padding: 0 1rem;
+    max-width: 100%;
   }
 
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .card-image-wrapper {
@@ -140,41 +176,53 @@
   }
 
   .card-content {
-    padding: 0.75rem;
+    padding: 0.875rem;
+    min-height: 65px;
   }
 
   .card-text {
-    font-size: 0.85rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 }
 
 @media (max-width: 640px) {
   .cards-section {
-    padding: 4rem 0 2rem;
+    padding: 3.5rem 0 2rem;
   }
 
   .cards-container {
     max-width: 100%;
-    padding: 0 1.25rem;
+    padding: 0 1rem;
   }
 
   .cards-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.75rem;
   }
 
   .card-image-wrapper {
-    height: 200px;
+    height: 220px;
+  }
+
+  .card-content {
+    padding: 1rem;
+    min-height: 70px;
+  }
+
+  .card-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 }
 
 @media (max-width: 480px) {
   .cards-section {
-    padding: 3.5rem 0 1.5rem;
+    padding: 3rem 0 1.5rem;
   }
 
   .cards-container {
-    padding: 0 1rem;
+    padding: 0 0.875rem;
   }
 
   .cards-grid {
@@ -182,22 +230,23 @@
   }
 
   .card-image-wrapper {
-    height: 180px;
+    height: 200px;
   }
 
   .card-content {
-    padding: 0.75rem;
+    padding: 0.875rem;
+    min-height: 65px;
   }
 
   .card-text {
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: 0.9rem;
+    line-height: 1.5;
   }
 }
 
 @media (max-width: 360px) {
   .cards-section {
-    padding: 3rem 0 1.5rem;
+    padding: 2.5rem 0 1.5rem;
   }
 
   .cards-container {
@@ -209,38 +258,54 @@
   }
 
   .card-image-wrapper {
-    height: 160px;
-  }
-
-  .card-text {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .cards-section {
-    padding: 3.5rem 0 1.5rem;
-  }
-
-  .cards-container {
-    padding: 0 1rem;
-  }
-
-  .cards-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .card-image-wrapper {
-    height: 200px;
+    height: 180px;
   }
 
   .card-content {
     padding: 0.75rem;
+    min-height: 60px;
   }
 
   .card-text {
     font-size: 0.85rem;
     line-height: 1.4;
+  }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .card-image-wrapper {
+    height: 150px;
+  }
+}
+
+/* Large tablets in portrait */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cards-container {
+    padding: 0 2rem;
+  }
+
+  .cards-grid {
+    gap: 2.25rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  .cards-container {
+    max-width: 1200px;
+  }
+
+  .cards-grid {
+    gap: 3.5rem;
+  }
+
+  .card-image-wrapper {
+    height: 220px;
   }
 }
